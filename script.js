@@ -9,7 +9,9 @@ window.addEventListener('DOMContentLoaded', () => {
         let win3Percent = Number(document.getElementById('win3Percent').value);
         let numTrades = 100;
         let cycles = Number(document.getElementById('cycles').value)
-        let result = document.getElementById('result');
+        let result_p = document.getElementById('result_p');
+        let best = document.getElementById('best');
+        let all = document.getElementById('all');
         let loseRatio = losePercent / 100;
         let breakEvenRatio = breakEvenPercent / 100;
         let win1Ratio = win1Percent / 100;
@@ -17,6 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let win3Ratio = win3Percent / 100;
 
         let totalCapital = capital;
+        let cycleResults = [];
         for (let i = 0; i < cycles; i++) {
             for (let j = 0; j < numTrades; j++) {
                 let random = Math.random();
@@ -32,14 +35,33 @@ window.addEventListener('DOMContentLoaded', () => {
                     totalCapital *= (1 + 0.03);
                 }
             }
+            cycleResults.push(totalCapital);
+            console.log(cycleResults[i].toFixed(2), 'are results')
+
         }
 
-        result.innerHTML = ''
-        result.style.display = 'block';
+        result_p.textContent = ''
+        all.innerHTML = ''
+        for (let i = 0; i < cycleResults.length; i++) {
+            all.innerHTML += `
+            <thead>
+            <tr>
+                <th>Cycle</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${i + 1}</td>
+                <td>$${cycleResults[i].toFixed(2)}</td>
+            </tr>
+        </tbody>
+            `
+        }
         if (totalCapital > capital) {
-            result.innerHTML = `Your trading strategy is a winning one! Your total capital after <span style="color:blue">${numTrades * cycles}</span> trades is <span style="color:green">$${totalCapital.toFixed(2)}</span>.`;
+            best.innerHTML = `Your total capital <span style="color: green">increased</span> from <span style="color:red">$${capital.toFixed(2)}</span> to <span style="color:green">$${totalCapital.toFixed(2)}</span>, after <span style="color:blue">${numTrades * cycles}</span> trades.`;
         } else {
-            result.innerHTML = `Your trading strategy is not a winning one. Your total capital after <span style="color:blue">${numTrades * cycles}</span> trades is <span style="color:red">$${totalCapital.toFixed(2)}</span>.`;
+            best.innerHTML = `Your total capital <span style="color: red">decreased</span> from <span style="color:green">$${capital.toFixed(2)}</span> to <span style="color:red">$${totalCapital.toFixed(2)}</span>, after <span style="color:blue">${numTrades * cycles}</span> trades.`;
         }
     });
 }); 
