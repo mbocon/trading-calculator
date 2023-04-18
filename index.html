@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>Trading Strategy Calculator</title>
+</head>
+
+<body>
+    <header id="header">
+        <h1>Trading Strategy Calculator</h1>
+        <p id="p">This calculator will help you determine the profitability of your trading strategy. The calculator will tell you how much money you will make or lose per 100 trade cycle. The calculator randomly assigns a win/loss or breakeven based on the percentage you enter</p>
+    </header>
+    <main>
+        <form id="form">
+            <label for="capital">Initial Capital:</label>
+            <input type="number" id="capital" name="capital" value="500">
+
+            <label for="losePercent">Percentage of Losing Trades:</label>
+            <input type="number" id="losePercent" name="losePercent" value="40">
+
+            <label for="breakEvenPercent">Percentage of Breakeven Trades:</label>
+            <input type="number" id="breakEvenPercent" name="breakEvenPercent" value="30">
+
+            <label for="win1Percent">Percentage of Winning Trades with 1% Gain:</label>
+            <input type="number" id="win1Percent" name="win1Percent" value="10">
+
+            <label for="win2Percent">Percentage of Winning Trades with 2% Gain:</label>
+            <input type="number" id="win2Percent" name="win2Percent" value="10">
+
+            <label for="win3Percent">Percentage of Winning Trades with 3% Gain:</label>
+            <input type="number" id="win3Percent" name="win3Percent" value="10">
+
+            <label for="cycles">Number of Cycles: <small>1 cycle = 100 trades</small></label>
+            <input type="number" id="cycles" name="cycles" value="10">
+
+            <button id="calculate-btn" type="submit">Calculate</button>
+        </form>
+
+        <div id="result" style="display:none"></div>
+    </main>
+
+</body>
+
+</html>
